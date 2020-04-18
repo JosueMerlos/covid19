@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid19</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <nav class="navbar navbar-light bg-light col-sm-12">
+        <div class="container">
+          <div class="row">
+            <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Covid19">Covid19</a>
+            <%= form_tag(countries_index_path, class: 'form-inline') do %>
+              <%= text_field_tag :search, params[:search], class: 'form-control mr-sm-2', type: 'search' %>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %> alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+      <%= yield %>
+      <footer class="footer">
+        <small>
+          covid-19 - 2020
+        </small>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

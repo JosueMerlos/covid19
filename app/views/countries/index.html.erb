@@ -1,0 +1,45 @@
+<div class="row">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Pais</th>
+        <th style="text-align: center;" scope="col">Casos Confirmados</th>
+        <th style="text-align: center;" scope="col">Casos Activos</th>
+        <th style="text-align: center;" scope="col">Muertes</th>
+        <th style="text-align: center;" scope="col">Recuperados</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Global</th>
+        <td style="text-align: center;"><span class="badge badge-secondary"><%= @global_info[:total_cases] %></span></td>
+        <td style="text-align: center;"><span class="badge badge-warning"><%= @global_info[:total_active_cases] %></span></td>
+        <td style="text-align: center;"><span class="badge badge-dark"><%= @global_info[:total_death_cases] %></span></td>
+        <td style="text-align: center;"><span class="badge badge-success"><%= @global_info[:total_recovered_cases] %></span></td>
+      </tr>
+      <% @countries.each do |country| %>
+        <tr>
+          <th scope="row"><%= country.english_name %></th>
+          <td style="text-align: center;"><span class="badge badge-secondary"><%= country.total_cases %></span></td>
+          <td style="text-align: center;"><span class="badge badge-warning"><%= country.total_active_cases %></span></td>
+          <td style="text-align: center;"><span class="badge badge-dark"><%= country.total_death_cases %></span></td>
+          <td style="text-align: center;"><span class="badge badge-success"><%= country.total_recovered_cases %></span></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+<!-- <div class="row">
+  <div class="card" style="width: 16.5  rem; margin: 0.5rem;">
+    <div class="card-header">
+      Nicaragua
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Casos Confirmados: 2</li>
+      <li class="list-group-item">Casos Activos: 1</li>
+      <li class="list-group-item">Muertes: 1</li>
+      <li class="list-group-item">Recuperados: 1</li>
+      <li class="list-group-item">Recuperados: 0</li>
+    </ul>
+  </div>
+</div> -->
