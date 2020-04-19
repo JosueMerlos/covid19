@@ -6,7 +6,7 @@ class Country < ApplicationRecord
   has_many :covid_information
 
   def self.search(txt_search)
-    where('english_name like ?', ['%', txt_search.try(:strip), '%'].join)
+    where('english_name ilike ?', ['%', txt_search.try(:strip), '%'].join)
   end
 
   def total_cases
