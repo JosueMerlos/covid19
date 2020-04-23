@@ -12,18 +12,18 @@
     <tbody>
       <tr>
         <th scope="row">Global</th>
-        <td style="text-align: center;"><span class="badge badge-secondary"><%= @global_info[:total_cases] %></span></td>
-        <td style="text-align: center;"><span class="badge badge-warning"><%= @global_info[:total_active_cases] %></span></td>
-        <td style="text-align: center;"><span class="badge badge-dark"><%= @global_info[:total_death_cases] %></span></td>
-        <td style="text-align: center;"><span class="badge badge-success"><%= @global_info[:total_recovered_cases] %></span></td>
+        <td style="text-align: center;"><span class="badge badge-secondary"><%= number_with_delimiter(@global_info[:total_cases]) %></span></td>
+        <td style="text-align: center;"><span class="badge badge-warning"><%= number_with_delimiter(@global_info[:total_active_cases]) %></span></td>
+        <td style="text-align: center;"><span class="badge badge-dark"><%= number_with_delimiter(@global_info[:total_death_cases]) %></span></td>
+        <td style="text-align: center;"><span class="badge badge-success"><%= number_with_delimiter(@global_info[:total_recovered_cases]) %></span></td>
       </tr>
       <% @countries.each do |country| %>
         <tr>
           <th scope="row"><%= country.english_name %></th>
-          <td style="text-align: center;"><span class="badge badge-secondary"><%= country.total_cases %></span></td>
-          <td style="text-align: center;"><span class="badge badge-warning"><%= country.total_active_cases %></span></td>
-          <td style="text-align: center;"><span class="badge badge-dark"><%= country.total_death_cases %></span></td>
-          <td style="text-align: center;"><span class="badge badge-success"><%= country.total_recovered_cases %></span></td>
+          <td style="text-align: center;"><span class="badge badge-secondary"><%= number_with_delimiter(country.total_cases) %></span></td>
+          <td style="text-align: center;"><span class="badge badge-warning"><%= number_with_delimiter(country.total_active_cases) %></span></td>
+          <td style="text-align: center;"><span class="badge badge-dark"><%= number_with_delimiter(country.total_death_cases) %></span></td>
+          <td style="text-align: center;"><span class="badge badge-success"><%= number_with_delimiter(country.total_recovered_cases) %></span></td>
         </tr>
       <% end %>
     </tbody>

@@ -2,11 +2,11 @@ class CovidInformation < ApplicationRecord
   belongs_to :country
 
   def self.total_cases
-    new_cases.to_i + total_death_cases.to_i + total_recovered_cases.to_i
+    total_active_cases.to_i + total_death_cases.to_i + total_recovered_cases.to_i
   end
 
   def self.total_active_cases
-    total_cases.to_i - (total_death_cases.to_i + total_recovered_cases.to_i)
+    new_cases.to_i - (total_death_cases.to_i + total_recovered_cases.to_i)
   end
 
   def self.total_death_cases
