@@ -10,11 +10,11 @@ class Country < ApplicationRecord
   end
 
   def total_cases
-    covid_information.sum(:new_cases).to_i + total_death_cases.to_i + total_recovered_cases.to_i
+    total_active_cases.to_i + total_death_cases.to_i + total_recovered_cases.to_i
   end
 
   def total_active_cases
-    total_cases.to_i - (total_death_cases.to_i + total_recovered_cases.to_i)
+    covid_information.sum(:new_cases).to_i - (total_death_cases.to_i + total_recovered_cases.to_i)
   end
 
   def total_death_cases
@@ -22,7 +22,7 @@ class Country < ApplicationRecord
   end
 
   def total_recovered_cases
-    covid_information.last.try(:recovered)
+    covid_information.sum(:recovered).to_i
   end
 
   def new_cases

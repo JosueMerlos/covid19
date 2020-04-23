@@ -23,8 +23,8 @@ begin
 
     CovidInformation.create(
       country_id: country.id,
-      new_cases: row_array[6].gsub(',', '').strip.to_i,
-      new_deaths: row_array[3].gsub(',', '').strip.to_i,
+      new_cases: row_array[1].gsub(',', '').try(:strip).try(:to_i) - row_array[2].gsub('+', '').gsub(',', '').try(:strip).try(:to_i),
+      new_deaths: row_array[3].gsub(',', '').try(:strip).try(:to_i),
       recovered: row_array[5].try(:gsub, ',', '').try(:to_i),
       date_event: Date.current - 1.days
     )
