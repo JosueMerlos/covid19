@@ -24,7 +24,8 @@ class UpdateInfoJob < ApplicationJob
       next if row_array[0].strip.match?('Total') || row_array[0].strip.match?('World') || row_array[0].strip.empty?
 
       country = Country.find_or_create_by(english_name: row_array[0].strip)
-      next if country.total_active_cases.to_i.eql?(row_array[6].gsub(',', '').strip.to_i)
+      next if country.total_active_cases.to_i.eql?(row_array[6].gsub(',', '').strip.to_i) &&
+              country.total_cases.to_i.eql?(row_array[1].gsub(',', '').strip.to_i)
 
       covid_information = CovidInformation.find_or_initialize_by(country_id: country.id, date_event: Date.current)
       recovered_cases = row_array[5].try(:gsub, ',', '').try(:strip).try(:to_i)
