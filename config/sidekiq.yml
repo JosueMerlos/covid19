@@ -7,5 +7,10 @@ tasks: &tasks
     class: UpdateInfoJob
     queue: default
     description: "This job update the informacion about the covid for all countries"
+  wake_up_job:
+    every: '12m' # cron: '10 0 * * * *'
+    class: WakeUpJob
+    queue: default
+    description: "This job wake up to himself"
 :schedule:
   <<: *tasks

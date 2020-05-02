@@ -15,21 +15,28 @@ begin
   rows.each do |row|
     row_array = row.content.split(/\n/)
     row_array.shift
-    next if row_array[0].strip.match?('Total') || row_array[0].strip.match?('World') || row_array[0].strip.empty?
+    next if row_array[0].strip.match?('Total') || row_array[0].strip.empty?
 
+    country_name = row_array[0].strip.match?('World') ? 'Global' : row_array[0].strip
     country = Country.find_or_create_by(
-      english_name: row_array[0].strip
+      english_name: country_name
     )
 
     CovidInformation.create(
       country_id: country.id,
-      new_cases: row_array[1].gsub(',', '').try(:strip).try(:to_i) - row_array[2].gsub('+', '').gsub(',', '').try(:strip).try(:to_i),
-      new_deaths: row_array[3].gsub(',', '').try(:strip).try(:to_i),
       recovered: row_array[5].try(:gsub, ',', '').try(:to_i),
-      date_event: Date.current - 1.days
+      active_cases: row_array[6].try(:gsub, ',', '').try(:to_i),
+      deaths: row_array[3].gsub(',', '').try(:strip).try(:to_i)
     )
 
-    puts "#{row_array[0].strip} created!"
+    DailyInformation.create(
+      country_id: country.id,
+      new_cases: row_array[2].gsub('+', '').gsub(',', '').try(:strip).try(:to_i),
+      new_deaths: row_array[4].gsub('+', '').gsub(',', '').try(:strip).try(:to_i),
+      date_event: Date.current
+    )
+
+    puts "#{country_name} created!"
   end
 rescue StandardError => e
   puts e.message
