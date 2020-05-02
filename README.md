@@ -3,6 +3,14 @@
 COVID-19 Coronavirus Pandemic
 Reported Cases and Deaths by Country.
 
+COVID19 - API
+
+GET https://covid20-info.herokuapp.com/api/v1/countries -> all countries info
+![](screenshot/all_countries.png)
+
+GET https://covid20-info.herokuapp.com/api/v1/countries/CountryName -> country specific information
+![](screenshot/specific_country.png)
+
 Things you may want to cover:
 
 * Ruby version: ruby '2.5.1'
